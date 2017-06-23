@@ -98,7 +98,8 @@ class GitolitePrefixConsumer(fedmsg.consumers.FedmsgConsumer):
 
         self.queued_messages.append(msg)
 
-        moksha.hub.reactor.reactor.callLater(self.delay, delayed_consume)
+        moksha.hub.reactor.reactor.callFromThread(
+            moksha.hub.reactor.reactor.callLater, self.delay, delayed_consume)
 
     def action(self, messages):
         self.log.debug("Acting on %s" % pprint.pformat(messages))
@@ -185,7 +186,8 @@ class GenACLsConsumer(fedmsg.consumers.FedmsgConsumer):
 
         self.queued_messages.append(msg)
 
-        moksha.hub.reactor.reactor.callLater(self.delay, delayed_consume)
+        moksha.hub.reactor.reactor.callFromThread(
+            moksha.hub.reactor.reactor.callLater, self.delay, delayed_consume)
 
     def action(self, messages):
         self.log.debug("Acting on %s" % pprint.pformat(messages))
