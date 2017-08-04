@@ -55,6 +55,8 @@ class GitolitePrefixConsumer(fedmsg.consumers.FedmsgConsumer):
 
     def __init__(self, hub):
         super(GitolitePrefixConsumer, self).__init__(hub)
+        if not self._initialized:
+            return
 
         # This is required.  It is the number of seconds that we should wait
         # until we ultimately act on a FAS message.
@@ -158,6 +160,8 @@ class GenACLsConsumer(fedmsg.consumers.FedmsgConsumer):
 
     def __init__(self, hub):
         super(GenACLsConsumer, self).__init__(hub)
+        if not self._initialized:
+            return
 
         # This is required.  It is the number of seconds that we should wait
         # until we ultimately act on a pkgdb message.
